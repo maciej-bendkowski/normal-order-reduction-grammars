@@ -1,5 +1,6 @@
 # Normal-order reduction grammars
 Supplement to the "Normal-order reduction grammars" article [1].
+
 [1] http://arxiv.org/abs/1603.01758
 
 Changes:
