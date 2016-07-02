@@ -189,3 +189,17 @@ module ReductionGrammar where
     reductionGrammars = r0 : next reductionGrammars
         where
             next (g : gs) = generate g : next gs
+    
+    -- | Predicate defining major, w.r.t. asymptotic density, productions.
+    major :: Tree -> Bool
+    major C = True
+    major (R n) = n /= 0
+    major (App lt rt) = major lt || major rt
+    major _ = False
+
+    -- | Filters major w.r.t. asymptotic density, g's productions.
+    majorProds :: Grammar -> [Production]
+    majorProds g = filter majorP $ productions g
+            where
+                    majorP (ProdK ts) = any major ts
+                    majorP (ProdS ts) = any major ts
